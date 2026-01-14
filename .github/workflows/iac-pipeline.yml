@@ -1,0 +1,22 @@
+name: App Infra Pipeline
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  dev:
+    uses: your-org/platform-github-actions/.github/workflows/terraform-iac.yml@v1.0.0
+    with:
+      environment: dev
+      working_directory: environments/dev
+    secrets: inherit
+
+  prod:
+    needs: dev
+    uses: your-org/platform-github-actions/.github/workflows/terraform-iac.yml@v1.0.0
+    with:
+      environment: prod
+      working_directory: environments/prod
+    secrets: inherit
