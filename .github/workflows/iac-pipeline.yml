@@ -21,4 +21,5 @@ jobs:
     with:
       environment: prod
       policy_repo: seera-eswara/terraform-policy-as-code
+      working_directory: environments/prod
     secrets: inherit
