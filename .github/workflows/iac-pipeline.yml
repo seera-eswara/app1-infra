@@ -7,15 +7,16 @@ on:
 
 jobs:
   dev:
-    uses: your-org/platform-github-actions/.github/workflows/terraform-iac.yml@v1.0.0
+    uses: seera-eswara/github-actions-templates/.github/workflows/terraform-iac.yml@v1.0.0
     with:
       environment: dev
-      working_directory: environments/dev
+      policy_repo: seera-eswara/terraform-policy-as-code
     secrets: inherit
+
 
   prod:
     needs: dev
-    uses: your-org/platform-github-actions/.github/workflows/terraform-iac.yml@v1.0.0
+    uses: seera-eswara/github-actions-templates/.github/workflows/terraform-iac.yml@v1.0.0
     with:
       environment: prod
       working_directory: environments/prod
