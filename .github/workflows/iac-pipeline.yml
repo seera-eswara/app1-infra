@@ -13,6 +13,9 @@ jobs:
       environment: dev
       policy_repo: seera-eswara/terraform-policy-as-code
     secrets: inherit
+    permissions:
+      contents: write
+
 
 
   prod:
@@ -23,3 +26,6 @@ jobs:
       policy_repo: seera-eswara/terraform-policy-as-code
       working_directory: environments/prod
     secrets: inherit
+    permissions:
+      contents: write
+
