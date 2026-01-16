@@ -5,6 +5,6 @@ module "aks" {
   location       = "eastus"
   resource_group = "rg-app1-dev"
 
-  vm_size    = "Standard_D4s_v5"
+  vm_size    = "Standard_B2ts_v2"
   node_count = 3
 }
