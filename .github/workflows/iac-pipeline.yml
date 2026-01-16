@@ -6,7 +6,8 @@ on:
   push:
     branches: [ main ]
 permissions:
-  contents: write
+  id-token: write
+  contents: read
 jobs:
   dev:
     uses: seera-eswara/github-actions-templates/.github/workflows/terraform-iac.yml@v1.0.0
