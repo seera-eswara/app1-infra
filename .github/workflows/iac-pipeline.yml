@@ -5,7 +5,8 @@ on:
   pull_request:
   push:
     branches: [ main ]
-
+permissions:
+  contents: write
 jobs:
   dev:
     uses: seera-eswara/github-actions-templates/.github/workflows/terraform-iac.yml@v1.0.0
@@ -27,5 +28,5 @@ jobs:
       working_directory: environments/prod
     secrets: inherit
     permissions:
-      contents: write
+      contents: read
 
