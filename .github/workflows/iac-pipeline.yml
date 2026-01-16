@@ -16,6 +16,7 @@ jobs:
       policy_repo: seera-eswara/terraform-policy-as-code
     secrets: inherit
     permissions:
+      id-token: write
       contents: write
 
 
@@ -29,5 +30,6 @@ jobs:
       working_directory: environments/prod
     secrets: inherit
     permissions:
+      id-token: write
       contents: read
 
