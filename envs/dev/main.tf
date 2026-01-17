@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.57.0"
+    }
+  }
+}
+
 resource "azurerm_log_analytics_workspace" "this" {
   name                = "law-app1-dev"
   location            = "eastus"
