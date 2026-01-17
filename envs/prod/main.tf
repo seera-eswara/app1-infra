@@ -11,6 +11,11 @@ provider "azurerm" {
   features {}
 }
 
+resource "azurerm_resource_group" "this" {
+  name     = "rg-app1-prod"
+  location = "eastus"
+}
+
 module "vnet" {
   source = "git::https://github.com/seera-eswara/terraform-azure-modules.git//modules/vnet?ref=f94383044a37da515aa0557225aa00825f96ccf4"
 

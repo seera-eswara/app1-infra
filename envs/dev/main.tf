@@ -11,10 +11,15 @@ provider "azurerm" {
   features {}
 }
 
+resource "azurerm_resource_group" "this" {
+  name     = "rg-app1-dev"
+  location = "eastus"
+}
+
 resource "azurerm_log_analytics_workspace" "this" {
   name                = "law-app1-dev"
   location            = "eastus"
-  resource_group_name = "rg-app1-dev"
+  resource_group_name = azurerm_resource_group.this.name
   sku                 = "PerGB2018"
   retention_in_days   = 30
 }
@@ -24,7 +29,7 @@ module "aks" {
 
   name           = "app1-dev-aks"
   location       = "eastus"
-  resource_group = "rg-app1-dev"
+  resource_group = azurerm_resource_group.this.name
 
   vm_size    = "Standard_B2ts_v2"
   node_count = 3
