@@ -31,7 +31,7 @@ module "aks" {
   location       = "eastus"
   resource_group = azurerm_resource_group.this.name
 
-  vm_size    = "Standard_B2ts_v2"
+  vm_size    = "Standard_D4s_v3"
   node_count = 3
 
   enable_oms_agent           = true
