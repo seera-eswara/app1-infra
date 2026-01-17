@@ -1,3 +1,16 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.57.0"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+}
+
 module "vnet" {
   source = "git::https://github.com/seera-eswara/terraform-azure-modules.git//modules/vnet?ref=f94383044a37da515aa0557225aa00825f96ccf4"
 

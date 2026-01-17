@@ -7,6 +7,10 @@ terraform {
   }
 }
 
+provider "azurerm" {
+  features {}
+}
+
 resource "azurerm_log_analytics_workspace" "this" {
   name                = "law-app1-dev"
   location            = "eastus"
