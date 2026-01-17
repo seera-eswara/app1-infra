@@ -10,7 +10,7 @@ permissions:
   contents: read
 jobs:
   dev:
-    uses: seera-eswara/github-actions-templates/.github/workflows/terraform-iac.yml@v1.0.3
+    uses: seera-eswara/github-actions-templates/.github/workflows/terraform-iac.yml@v1.0.4
     with:
       environment: dev
       policy_repo: seera-eswara/terraform-policy-as-code
@@ -22,7 +22,7 @@ jobs:
       contents: write
   prod:
     needs: dev
-    uses: seera-eswara/github-actions-templates/.github/workflows/terraform-iac.yml@v1.0.3
+    uses: seera-eswara/github-actions-templates/.github/workflows/terraform-iac.yml@v1.0.4
     with:
       environment: prod
       policy_repo: seera-eswara/terraform-policy-as-code
