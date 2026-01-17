@@ -1,5 +1,13 @@
+resource "azurerm_log_analytics_workspace" "this" {
+  name                = "law-app1-dev"
+  location            = "eastus"
+  resource_group_name = "rg-app1-dev"
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
+
 module "aks" {
-  source = "git::https://github.com/seera-eswara/terraform-azure-modules.git//modules/aks?ref=1995a3f45ade7920e8756291a78fa32db057b4f5"
+  source = "git::https://github.com/seera-eswara/terraform-azure-modules.git//modules/aks?ref=f94383044a37da515aa0557225aa00825f96ccf4"
 
   name           = "app1-dev-aks"
   location       = "eastus"
@@ -7,4 +15,7 @@ module "aks" {
 
   vm_size    = "Standard_B2ts_v2"
   node_count = 3
+
+  enable_oms_agent            = true
+  log_analytics_workspace_id  = azurerm_log_analytics_workspace.this.id
 }
