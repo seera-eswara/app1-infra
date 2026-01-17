@@ -32,7 +32,7 @@ module "aks" {
   resource_group = azurerm_resource_group.this.name
 
   vm_size    = "Standard_D4s_v3"
-  node_count = 3
+  node_count = 2
 
   enable_oms_agent           = true
   log_analytics_workspace_id = azurerm_log_analytics_workspace.this.id
