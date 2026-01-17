@@ -16,6 +16,6 @@ module "aks" {
   vm_size    = "Standard_B2ts_v2"
   node_count = 3
 
-  enable_oms_agent            = true
-  log_analytics_workspace_id  = azurerm_log_analytics_workspace.this.id
+  enable_oms_agent           = true
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.this.id
 }
