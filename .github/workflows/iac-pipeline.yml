@@ -14,13 +14,11 @@ jobs:
     with:
       environment: dev
       policy_repo: seera-eswara/terraform-policy-as-code
+      policy_path: policies/
     secrets: inherit
     permissions:
       id-token: write
       contents: write
-
-
-
   prod:
     needs: dev
     uses: seera-eswara/github-actions-templates/.github/workflows/terraform-iac.yml@v1.0.0
@@ -28,6 +26,7 @@ jobs:
       environment: prod
       policy_repo: seera-eswara/terraform-policy-as-code
       working_directory: environments/prod
+      policy_path: policies/
     secrets: inherit
     permissions:
       id-token: write
