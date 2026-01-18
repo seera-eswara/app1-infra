@@ -11,9 +11,15 @@ provider "azurerm" {
   features {}
 }
 
+# Preserve existing resource group during refactoring
+moved {
+  from = azurerm_resource_group.this
+  to   = azurerm_resource_group.app
+}
+
 # Application-specific resource group
 resource "azurerm_resource_group" "app" {
-  name     = "rg-app1-dev-app"
+  name     = "rg-app1-dev"
   location = "eastus"
 
   tags = {
