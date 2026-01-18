@@ -28,6 +28,20 @@ resource "azurerm_resource_group" "app" {
   }
 }
 
+# TODO: Remove once subscription factory provides baseline log analytics
+resource "azurerm_log_analytics_workspace" "this" {
+  name                = "law-app1-dev"
+  location            = "eastus"
+  resource_group_name = azurerm_resource_group.app.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+
+  tags = {
+    Application = "app1"
+    Environment = "dev"
+  }
+}
+
 module "aks" {
   source = "git::https://github.com/seera-eswara/terraform-azure-modules.git//modules/aks?ref=f94383044a37da515aa0557225aa00825f96ccf4"
 
@@ -39,5 +53,7 @@ module "aks" {
   node_count = 2
 
   enable_oms_agent           = true
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.baseline.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.this.id
+  # TODO: Switch to subscription factory baseline once deployed:
+  # log_analytics_workspace_id = data.azurerm_log_analytics_workspace.baseline.id
 }
