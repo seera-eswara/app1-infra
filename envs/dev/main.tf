@@ -11,17 +11,15 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "this" {
-  name     = "rg-app1-dev"
+# Application-specific resource group
+resource "azurerm_resource_group" "app" {
+  name     = "rg-app1-dev-app"
   location = "eastus"
-}
 
-resource "azurerm_log_analytics_workspace" "this" {
-  name                = "law-app1-dev"
-  location            = "eastus"
-  resource_group_name = azurerm_resource_group.this.name
-  sku                 = "PerGB2018"
-  retention_in_days   = 30
+  tags = {
+    Application = "app1"
+    Environment = "dev"
+  }
 }
 
 module "aks" {
@@ -29,11 +27,11 @@ module "aks" {
 
   name           = "app1-dev-aks"
   location       = "eastus"
-  resource_group = azurerm_resource_group.this.name
+  resource_group = azurerm_resource_group.app.name
 
   vm_size    = "Standard_D4s_v3"
   node_count = 2
 
   enable_oms_agent           = true
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.this.id
+  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.baseline.id
 }

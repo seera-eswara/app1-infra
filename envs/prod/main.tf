@@ -11,9 +11,15 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "this" {
-  name     = "rg-app1-prod"
+# Application-specific resource group
+resource "azurerm_resource_group" "app" {
+  name     = "rg-app1-prod-app"
   location = "eastus"
+
+  tags = {
+    Application = "app1"
+    Environment = "prod"
+  }
 }
 
 module "vnet" {
